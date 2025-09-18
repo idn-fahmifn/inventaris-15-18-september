@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Ruangan;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,6 +18,14 @@ class ProfileController extends Controller
     {
         $data = User::where('isAdmin', false)->get();
         return view('admin.dashboard', [
+            'data' => $data
+        ]);
+    }
+
+    public function dashboardPetugas()
+    {
+        $data = Ruangan::where('id_user', Auth::user()->id)->get();
+        return view('petugas.dashboard', [
             'data' => $data
         ]);
     }

@@ -57,9 +57,9 @@ class BarangController extends Controller
     
     public function detail($id)
     {
-        $data = Ruangan::find($id);
-        $petugas = User::where('isAdmin', false)->get();
-        return view('admin.ruangan.detail', compact('data', 'petugas'));
+        $data = Barang::find($id);
+        $ruangan = Ruangan::all();
+        return view('admin.barang.detail', compact('data', 'barang'));
     }
 
     public function edit(Request $request, $id)
