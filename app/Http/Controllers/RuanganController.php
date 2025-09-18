@@ -43,7 +43,34 @@ class RuanganController extends Controller
     public function detail($id)
     {
         $data = Ruangan::find($id);
-        return view('admin.ruangan.detail', compact('data'));
+        $petugas = User::where('isAdmin', false)->get();
+        return view('admin.ruangan.detail', compact('data', 'petugas'));
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $request->validate([
+            'nama_ruangan' => ['required', 'string', 'max:30'],
+            'id_user' => ['required', 'numeric'],
+            'ukuran' => ['required'],
+            'deskripsi' => ['required'],
+        ]);
+
+        $data = Ruangan::find($id);
+        $data->update([
+            'nama_ruangan' => $request->input('nama_ruangan'),
+            'id_user' => $request->input('id_user'),
+            'ukuran' => $request->input('ukuran'),
+            'deskripsi' => $request->input('deskripsi'),
+        ]);
+        return back()->with('success', 'Data berhasil diubah');
+    }
+
+    public function destroy($id)
+    {
+        $data = Ruangan::find($id);
+        $data->delete();
+        return redirect()->route('ruangan.index')->with('success', 'Data berhasil dihapus');
     }
 
 }
