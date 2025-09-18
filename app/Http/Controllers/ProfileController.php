@@ -11,6 +11,13 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+
+    // menampilkan halaman create
+    public function create()
+    {
+        return view('admin.user.create');
+    }
+
     /**
      * Display the user's profile form.
      */
