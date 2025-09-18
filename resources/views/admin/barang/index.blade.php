@@ -36,9 +36,6 @@
                     @empty
                             <div class="col-span-1 md:col-span-6 text-center text-gray-700 dark:text-gray-100">Barang masih kosong</div>
                     @endforelse
-
-
-
                 </div>
             </div>
         </div>

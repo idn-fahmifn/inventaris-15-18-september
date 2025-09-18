@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Ruangan;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -16,8 +17,9 @@ class BarangController extends Controller
 
     public function create()
     {
-        $petugas = User::where('isAdmin', false)->get();
-        return view('admin.ruangan.create', compact('petugas'));
+        $ruangan = Ruangan::all();
+        return view('admin.barang.create', 
+        compact('ruangan'));
     }
 
     public function store(Request $request)
