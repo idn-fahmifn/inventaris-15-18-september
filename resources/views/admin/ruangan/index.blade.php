@@ -21,17 +21,16 @@
 
                 <div class="space-y-4">
 
-                    {{-- @forelse ($data as $item)
+                    @forelse ($data as $item)
                         <a href=""
                             class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-gray-50 dark:bg-slate-700 hover:bg-gray-100 dark:hover:bg-slate-600 p-4 rounded-lg">
                             <div class="col-span-1 md:col-span-2 flex items-center">
-                                <span class="font-semibold text-gray-900 dark:text-gray-100">{{$item->name}}</span>
+                                <span class="font-semibold text-gray-900 dark:text-gray-100">{{$item->nama_ruangan}}</span>
                             </div>
-                            <div class="col-span-1 md:col-span-6 text-center text-gray-700 dark:text-gray-100">{{$item->email}}</div>
-
+                            <div class="col-span-1 md:col-span-6 text-center text-gray-700 dark:text-gray-100">{{$item->petugas->name}}</div>
                         </a>
                     @empty
-                    @endforelse --}}
+                    @endforelse
 
 
 

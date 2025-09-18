@@ -19,6 +19,9 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'admin'])->group(functio
 
     Route::get('/ruangan', [RuanganController::class, 'index'])->name('ruangan.index');
     Route::get('/ruangan/create', [RuanganController::class, 'create'])->name('ruangan.create');
+    Route::post('/ruangan', [RuanganController::class, 'store'])->name('ruangan.store');
+    Route::get('/ruangan/{param}', [RuanganController::class, 'detail'])->name('ruangan.detail');
+
 
 });
 

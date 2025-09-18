@@ -9,21 +9,24 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form method="post" action="" class="mt-6 space-y-6">
+                    <form method="post" action="{{route('ruangan.store')}}" class="mt-6 space-y-6">
                         @csrf
                         <div>
-                            <x-input-label for="name" :value="__('Name')" />
-                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
-                                :value="old('name')" required autofocus autocomplete="name" />
-                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                            <x-input-label for="nama_ruangan" :value="__('Nama Ruangan')" />
+                            <x-text-input id="nama_ruangan" name="nama_ruangan" type="text" class="mt-1 block w-full"
+                                :value="old('nama_ruangan')" required autofocus autocomplete="nama_ruangan" />
+                            <x-input-error class="mt-2" :messages="$errors->get('nama_ruangan')" />
                         </div>
 
                         <div>
-                            <x-input-label for="ukuran" :value="__('Penanggung Jawab Ruangan')" />
-                            <select name="ukuran" required class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" id="">
+                            <x-input-label for="id_user" :value="__('Penanggung Jawab Ruangan')" />
+                            <select name="id_user" required class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" id="">
                                 <option value="">- Pilih Penanggung Jawab -</option>
+                                @foreach ($petugas as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
                             </select>
-                            <x-input-error class="mt-2" :messages="$errors->get('ukuran')" />
+                            <x-input-error class="mt-2" :messages="$errors->get('id_user')" />
                         </div>
 
                         <div>

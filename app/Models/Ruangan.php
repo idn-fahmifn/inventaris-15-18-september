@@ -8,4 +8,11 @@ class Ruangan extends Model
 {
     protected $table = 'ruangan';
     protected $guarded;
+
+    public function petugas()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
+    
+
 }
