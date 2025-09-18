@@ -59,25 +59,42 @@
 
     <x-modal name="show-edit" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+            
             @csrf
-            @method('delete')
+                        <div>
+                            <x-input-label for="nama_ruangan" :value="__('Nama Ruangan')" />
+                            <x-text-input id="nama_ruangan" name="nama_ruangan" type="text" class="mt-1 block w-full"
+                                :value="old('nama_ruangan')" required autofocus autocomplete="nama_ruangan" />
+                            <x-input-error class="mt-2" :messages="$errors->get('nama_ruangan')" />
+                        </div>
 
-            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                {{ __('Are you sure you want to delete your account?') }}
-            </h2>
+                        <div>
+                            <x-input-label for="id_user" :value="__('Penanggung Jawab Ruangan')" />
+                            <select name="id_user" required class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" id="">
+                                <option value="">- Pilih Penanggung Jawab -</option>
+                                {{-- @foreach ($petugas as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach --}}
+                            </select>
+                            <x-input-error class="mt-2" :messages="$errors->get('id_user')" />
+                        </div>
 
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
-            </p>
+                        <div>
+                            <x-input-label for="ukuran" :value="__('Ukuran Ruangan')" />
+                            <select name="ukuran" required class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" id="">
+                                <option value="">- Pilih Ukuran -</option>
+                                <option value="kecil">Kecil</option>
+                                <option value="sedang">Sedang</option>
+                                <option value="besar">Besar</option>
+                            </select>
+                            <x-input-error class="mt-2" :messages="$errors->get('ukuran')" />
+                        </div>
 
-            <div class="mt-6">
-                <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
-
-                <x-text-input id="password" name="password" type="password" class="mt-1 block w-3/4"
-                    placeholder="{{ __('Password') }}" />
-
-                <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
-            </div>
+                        <div>
+                            <x-input-label for="name" :value="__('Deskripsi Ruangan')" />
+                            <textarea name="deskripsi" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"></textarea>
+                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                        </div>
 
             <div class="mt-6 flex justify-end">
                 <x-secondary-button x-on:click="$dispatch('close')">
