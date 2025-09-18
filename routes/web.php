@@ -13,7 +13,6 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'admin'])->group(functio
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
-
 });
 
 //route untuk petugas
@@ -23,7 +22,6 @@ Route::prefix('petugas')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('petugas.dashboard');
     })->name('dashboard.petugas');
-    
 });
 
 
