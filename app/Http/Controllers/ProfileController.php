@@ -13,6 +13,14 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
 
+    public function dashboardAdmin()
+    {
+        $data = User::where('isAdmin', false)->get();
+        return view('admin.dashboard', [
+            'data' => $data
+        ]);
+    }
+
     // menampilkan halaman create
     public function create()
     {
@@ -23,7 +31,7 @@ class ProfileController extends Controller
     {
         $request->validate([
             'name' => ['string', 'required', 'max:30'],
-            'email' => ['email', 'required'],
+            'email' => ['email', 'required', 'unique:users'],
         ]);
 
         $simpan = [

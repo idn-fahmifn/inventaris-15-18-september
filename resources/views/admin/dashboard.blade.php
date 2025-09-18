@@ -34,19 +34,26 @@
                 <div class="hidden md:grid grid-cols-12 gap-4 text-sm text-gray-500 font-semibold my-2 px-4">
                     <div class="col-span-4">Nama Petugas</div>
                     <div class="col-span-2 text-center">Email Petugas</div>
-                    
+
                 </div>
 
-                <div class="space-y-4">
-                    <a href=""
-                        class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-gray-50 dark:bg-slate-700 hover:bg-gray-100 dark:hover:bg-slate-600 p-4 rounded-lg">
-                        <div class="col-span-1 md:col-span-2 flex items-center">
-                            <span class="font-semibold text-gray-900 dark:text-gray-100">Mobil Hilang</span>
-                        </div>
-                        <div class="col-span-1 md:col-span-6 text-center text-gray-700 dark:text-gray-100">27 Juli 2025
-                        </div>
 
-                    </a>
+                <div class="space-y-4">
+
+                    @forelse ($data as $item)
+                        <a href=""
+                            class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-gray-50 dark:bg-slate-700 hover:bg-gray-100 dark:hover:bg-slate-600 p-4 rounded-lg">
+                            <div class="col-span-1 md:col-span-2 flex items-center">
+                                <span class="font-semibold text-gray-900 dark:text-gray-100">{{$item->name}}</span>
+                            </div>
+                            <div class="col-span-1 md:col-span-6 text-center text-gray-700 dark:text-gray-100">{{$item->email}}</div>
+
+                        </a>
+                    @empty
+                    @endforelse
+
+
+
                 </div>
             </div>
         </div>
