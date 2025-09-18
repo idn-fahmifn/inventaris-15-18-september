@@ -14,7 +14,9 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'admin'])->group(functio
         return view('admin.dashboard');
     })->name('dashboard');
 
-    Route::get('/petugas', [ProfileController::class, 'create'])->name('profile.create');
+    // untuk mengatur petugas
+    Route::get('/petugas', [ProfileController::class, 'create'])->name('petugas.create');
+    Route::post('/petugas', [ProfileController::class, 'store'])->name('petugas.store');
 
 });
 

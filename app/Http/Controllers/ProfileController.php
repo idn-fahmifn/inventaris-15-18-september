@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,24 @@ class ProfileController extends Controller
     public function create()
     {
         return view('admin.user.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => ['string', 'required', 'max:30'],
+            'email' => ['email', 'required'],
+        ]);
+
+        $simpan = [
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => '12345678' //password default
+        ];
+
+        User::create($simpan);
+        return redirect()->route('dashboard')->with('success', 'User berhasil ditambahkan');
+
     }
 
     /**
